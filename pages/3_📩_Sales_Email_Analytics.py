@@ -1,5 +1,5 @@
 """
-app.py — Email Analytics Dashboard
+app.py — Sales Email Analytics Dashboard
 
 Запуск: streamlit run app.py
 """
@@ -12,7 +12,7 @@ from datetime import datetime, timezone, timedelta
 
 try:
     st.set_page_config(
-        page_title="Email Analytics",
+        page_title="Sales Email Analytics",
         page_icon="📩",
         layout="wide"
     )
@@ -38,7 +38,7 @@ def load_data(_mtime):
 df = load_data(_csv_mtime())
 
 # --- Шапка ---
-st.title("📩 Email Analytics")
+st.title("📩 Sales Email Analytics")
 
 TZ_MSK = timezone(timedelta(hours=3))
 csv_mtime = os.path.getmtime(DATA_FILE)
