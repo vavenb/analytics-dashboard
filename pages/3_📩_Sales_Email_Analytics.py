@@ -35,7 +35,18 @@ def load_data(_mtime):
     return df
 
 
-df = load_data(_csv_mtime())
+# Почты для рассылок Snovio — исключаются из основных графиков
+SNOVIO_EMAILS = {
+    "gachakeril@gmail.com",
+    "mijaresenely523@gmail.com",
+    "walkman.annie@gmail.com",
+    "annie.applin@gmail.com",
+    "blueskyroxana@gmail.com",
+    "woodenwarekristian@gmail.com",
+}
+
+df_all = load_data(_csv_mtime())
+df = df_all[~df_all["email"].isin(SNOVIO_EMAILS)]
 
 # --- Шапка ---
 st.title("📩 Sales Email Analytics")
@@ -393,6 +404,7 @@ if os.path.exists(DAILY_FILE):
     st.caption("В разрезе сэйлз-менеджеров, все аккаунты суммарно")
 
     daily = pd.read_csv(DAILY_FILE)
+    daily = daily[~daily["email"].isin(SNOVIO_EMAILS)]
     daily["sent"] = pd.to_numeric(daily["sent"], errors="coerce").fillna(0).astype(int)
 
     daily_by_sales = (
@@ -428,3 +440,46 @@ if os.path.exists(DAILY_FILE):
         pivot_daily = daily_by_sales.pivot(index="date", columns="sales", values="sent").fillna(0).astype(int)
         pivot_daily.index.name = "Дата"
         st.dataframe(pivot_daily, use_container_width=True)
+
+# --- График: Исходящие Snovio — по сэйлз-менеджерам ---
+df_snovio = df_all[df_all["email"].isin(SNOVIO_EMAILS)]
+
+if not df_snovio.empty:
+    st.divider()
+    st.subheader("📨 Исходящие Snovio-рассылки — по сэйлз-менеджерам")
+    st.caption("Только почты, используемые для рассылок через Snovio")
+
+    by_sales_snovio = (
+        df_snovio.groupby(["month", "sales"])[["sent"]]
+        .sum()
+        .reset_index()
+        .sort_values("month")
+    )
+
+    fig_snovio = go.Figure()
+    for name in sorted(by_sales_snovio["sales"].unique()):
+        subset = by_sales_snovio[by_sales_snovio["sales"] == name]
+        fig_snovio.add_trace(go.Bar(
+            name=name,
+            x=subset["month"],
+            y=subset["sent"],
+            marker_color=COLORS.get(name, "#888"),
+            text=subset["sent"],
+            textposition="outside",
+        ))
+
+    fig_snovio.update_layout(
+        barmode="group",
+        height=520,
+        xaxis_tickangle=-45,
+        yaxis_title="Отправлено писем (Snovio)",
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        margin=dict(b=100, t=60),
+    )
+
+    st.plotly_chart(fig_snovio, use_container_width=True)
+
+    with st.expander("📋 Snovio-рассылки по сэйлзам (таблица)"):
+        pivot_snovio = by_sales_snovio.pivot(index="month", columns="sales", values="sent").fillna(0).astype(int)
+        pivot_snovio.index.name = "Месяц"
+        st.dataframe(pivot_snovio, use_container_width=True)
