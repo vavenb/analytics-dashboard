@@ -37,14 +37,14 @@ GMAIL_ACCOUNTS = {
     "Джеля": [
         "milukovasofia457@gmail.com",
         "aalexantoos@gmail.com",
-        "gachakeril@gmail.com",
-        "mijaresenely523@gmail.com",
+        "gachakeril@gmail.com",           # snovio
+        "mijaresenely523@gmail.com",       # snovio
         "klavarossi@gmail.com",
     ],
     "Настя": [
         "annwalkmanmgmt@gmail.com",
-        "walkman.annie@gmail.com",
-        "annie.applin@gmail.com",
+        "walkman.annie@gmail.com",         # snovio
+        "annie.applin@gmail.com",          # snovio
         "ann.gruv@gmail.com",
         "tammy.melloww@gmail.com",
         "oliviamerrickson@gmail.com",
@@ -53,9 +53,18 @@ GMAIL_ACCOUNTS = {
         "roksiblackfansy@gmail.com",
         "roxanawinterhold@gmail.com",
         "roxanabarnum@gmail.com",
-        "blueskyroxana@gmail.com",
-        "woodenwarekristian@gmail.com",
+        "blueskyroxana@gmail.com",         # snovio
+        "woodenwarekristian@gmail.com",    # snovio
     ],
+}
+
+SNOVIO_EMAILS = {
+    "gachakeril@gmail.com",
+    "mijaresenely523@gmail.com",
+    "walkman.annie@gmail.com",
+    "annie.applin@gmail.com",
+    "blueskyroxana@gmail.com",
+    "woodenwarekristian@gmail.com",
 }
 
 
@@ -167,10 +176,11 @@ for sales_name in sorted(set(list(WORKSPACE_ACCOUNTS.keys()) + list(GMAIL_ACCOUN
     
     for email in gmail_emails:
         info = status_data.get(email, {})
+        email_type = "📨 Snovio" if email in SNOVIO_EMAILS else "📩 Gmail"
         rows.append({
             "Статус": status_icon(info.get("status", "unknown")),
             "Email": email,
-            "Тип": "📩 Gmail",
+            "Тип": email_type,
             "Сообщений": info.get("messages_total", "—"),
             "Последняя проверка": format_time(info.get("last_check")),
             "Ошибка": info.get("error") or "—",
