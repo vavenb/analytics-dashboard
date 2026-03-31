@@ -352,7 +352,7 @@ sales,email,week,sent,received
 Джеля,emily@inperson.agency,2026-03-09,73,4
 Джеля,emily@inperson.agency,2026-03-16,54,1
 Джеля,emily@inperson.agency,2026-03-23,95,8
-Джеля,emily@inperson.agency,2026-03-30,1,2
+Джеля,emily@inperson.agency,2026-03-30,2,2
 Джеля,gachakeril@gmail.com,2024-01-01,42,1
 Джеля,gachakeril@gmail.com,2024-01-08,22,0
 Джеля,gachakeril@gmail.com,2024-01-15,8,0
@@ -470,7 +470,7 @@ sales,email,week,sent,received
 Джеля,gachakeril@gmail.com,2026-03-09,56,12
 Джеля,gachakeril@gmail.com,2026-03-16,37,9
 Джеля,gachakeril@gmail.com,2026-03-23,129,3
-Джеля,gachakeril@gmail.com,2026-03-30,8,0
+Джеля,gachakeril@gmail.com,2026-03-30,11,0
 Джеля,katrin@fansy.cz,2024-01-01,15,1
 Джеля,katrin@fansy.cz,2024-01-08,12,0
 Джеля,katrin@fansy.cz,2024-01-15,5,0
@@ -706,7 +706,7 @@ sales,email,week,sent,received
 Джеля,klavarossi@gmail.com,2026-03-09,13,11
 Джеля,klavarossi@gmail.com,2026-03-16,37,6
 Джеля,klavarossi@gmail.com,2026-03-23,22,24
-Джеля,klavarossi@gmail.com,2026-03-30,4,0
+Джеля,klavarossi@gmail.com,2026-03-30,4,6
 Джеля,mijaresenely523@gmail.com,2024-01-01,43,9
 Джеля,mijaresenely523@gmail.com,2024-01-08,16,1
 Джеля,mijaresenely523@gmail.com,2024-01-15,23,0
@@ -824,7 +824,7 @@ sales,email,week,sent,received
 Джеля,mijaresenely523@gmail.com,2026-03-09,47,8
 Джеля,mijaresenely523@gmail.com,2026-03-16,31,5
 Джеля,mijaresenely523@gmail.com,2026-03-23,75,1
-Джеля,mijaresenely523@gmail.com,2026-03-30,15,1
+Джеля,mijaresenely523@gmail.com,2026-03-30,94,2
 Джеля,milukovasofia457@gmail.com,2024-01-01,11,2
 Джеля,milukovasofia457@gmail.com,2024-01-08,18,5
 Джеля,milukovasofia457@gmail.com,2024-01-15,14,5
@@ -942,7 +942,7 @@ sales,email,week,sent,received
 Джеля,milukovasofia457@gmail.com,2026-03-09,34,1
 Джеля,milukovasofia457@gmail.com,2026-03-16,4,0
 Джеля,milukovasofia457@gmail.com,2026-03-23,381,0
-Джеля,milukovasofia457@gmail.com,2026-03-30,49,0
+Джеля,milukovasofia457@gmail.com,2026-03-30,49,1
 Джеля,sophia@inperson-group.com,2024-01-01,0,0
 Джеля,sophia@inperson-group.com,2024-01-08,0,0
 Джеля,sophia@inperson-group.com,2024-01-15,0,0
@@ -1060,7 +1060,7 @@ sales,email,week,sent,received
 Джеля,sophia@inperson-group.com,2026-03-09,200,301
 Джеля,sophia@inperson-group.com,2026-03-16,358,223
 Джеля,sophia@inperson-group.com,2026-03-23,424,220
-Джеля,sophia@inperson-group.com,2026-03-30,16,9
+Джеля,sophia@inperson-group.com,2026-03-30,17,34
 Ксения,amelia@inperson-group.com,2024-01-01,0,0
 Ксения,amelia@inperson-group.com,2024-01-08,0,0
 Ксения,amelia@inperson-group.com,2024-01-15,0,0
@@ -1176,9 +1176,9 @@ sales,email,week,sent,received
 Ксения,amelia@inperson-group.com,2026-02-23,0,0
 Ксения,amelia@inperson-group.com,2026-03-02,75,22
 Ксения,amelia@inperson-group.com,2026-03-09,278,35
-Ксения,amelia@inperson-group.com,2026-03-16,450,40
-Ксения,amelia@inperson-group.com,2026-03-23,367,74
-Ксения,amelia@inperson-group.com,2026-03-30,0,10
+Ксения,amelia@inperson-group.com,2026-03-16,450,37
+Ксения,amelia@inperson-group.com,2026-03-23,367,64
+Ксения,amelia@inperson-group.com,2026-03-30,11,35
 Ксения,blueskyroxana@gmail.com,2024-01-01,0,0
 Ксения,blueskyroxana@gmail.com,2024-01-08,0,0
 Ксения,blueskyroxana@gmail.com,2024-01-15,0,0
@@ -1414,7 +1414,7 @@ sales,email,week,sent,received
 Ксения,roksiblackfansy@gmail.com,2026-03-09,0,1
 Ксения,roksiblackfansy@gmail.com,2026-03-16,0,1
 Ксения,roksiblackfansy@gmail.com,2026-03-23,0,5
-Ксения,roksiblackfansy@gmail.com,2026-03-30,0,0
+Ксения,roksiblackfansy@gmail.com,2026-03-30,0,1
 Ксения,roxanabarnum@gmail.com,2024-01-01,0,0
 Ксения,roxanabarnum@gmail.com,2024-01-08,0,0
 Ксения,roxanabarnum@gmail.com,2024-01-15,0,0
@@ -1532,7 +1532,7 @@ sales,email,week,sent,received
 Ксения,roxanabarnum@gmail.com,2026-03-09,0,0
 Ксения,roxanabarnum@gmail.com,2026-03-16,0,0
 Ксения,roxanabarnum@gmail.com,2026-03-23,29,5
-Ксения,roxanabarnum@gmail.com,2026-03-30,37,0
+Ксения,roxanabarnum@gmail.com,2026-03-30,42,3
 Ксения,roxanawinterhold@gmail.com,2024-01-01,0,0
 Ксения,roxanawinterhold@gmail.com,2024-01-08,0,0
 Ксения,roxanawinterhold@gmail.com,2024-01-15,0,0
@@ -1650,7 +1650,7 @@ sales,email,week,sent,received
 Ксения,roxanawinterhold@gmail.com,2026-03-09,129,2
 Ксения,roxanawinterhold@gmail.com,2026-03-16,166,16
 Ксения,roxanawinterhold@gmail.com,2026-03-23,215,23
-Ксения,roxanawinterhold@gmail.com,2026-03-30,28,1
+Ксения,roxanawinterhold@gmail.com,2026-03-30,31,9
 Ксения,woodenwarekristian@gmail.com,2024-01-01,0,0
 Ксения,woodenwarekristian@gmail.com,2024-01-08,0,0
 Ксения,woodenwarekristian@gmail.com,2024-01-15,0,0
@@ -2004,7 +2004,7 @@ sales,email,week,sent,received
 Настя,annie.applin@gmail.com,2026-03-09,0,1
 Настя,annie.applin@gmail.com,2026-03-16,0,1
 Настя,annie.applin@gmail.com,2026-03-23,0,5
-Настя,annie.applin@gmail.com,2026-03-30,0,0
+Настя,annie.applin@gmail.com,2026-03-30,0,1
 Настя,annie@inperson-group.com,2024-01-01,0,0
 Настя,annie@inperson-group.com,2024-01-08,0,0
 Настя,annie@inperson-group.com,2024-01-15,0,0
@@ -2122,7 +2122,7 @@ sales,email,week,sent,received
 Настя,annie@inperson-group.com,2026-03-09,267,162
 Настя,annie@inperson-group.com,2026-03-16,459,170
 Настя,annie@inperson-group.com,2026-03-23,405,182
-Настя,annie@inperson-group.com,2026-03-30,2,3
+Настя,annie@inperson-group.com,2026-03-30,3,33
 Настя,annie@inperson.agency,2024-01-01,0,0
 Настя,annie@inperson.agency,2024-01-08,0,0
 Настя,annie@inperson.agency,2024-01-15,0,0
@@ -2240,7 +2240,7 @@ sales,email,week,sent,received
 Настя,annie@inperson.agency,2026-03-09,432,172
 Настя,annie@inperson.agency,2026-03-16,250,46
 Настя,annie@inperson.agency,2026-03-23,287,78
-Настя,annie@inperson.agency,2026-03-30,5,4
+Настя,annie@inperson.agency,2026-03-30,18,17
 Настя,annwalkmanmgmt@gmail.com,2024-01-01,0,0
 Настя,annwalkmanmgmt@gmail.com,2024-01-08,0,0
 Настя,annwalkmanmgmt@gmail.com,2024-01-15,0,0
@@ -2357,8 +2357,8 @@ sales,email,week,sent,received
 Настя,annwalkmanmgmt@gmail.com,2026-03-02,0,2
 Настя,annwalkmanmgmt@gmail.com,2026-03-09,0,1
 Настя,annwalkmanmgmt@gmail.com,2026-03-16,0,1
-Настя,annwalkmanmgmt@gmail.com,2026-03-23,32,25
-Настя,annwalkmanmgmt@gmail.com,2026-03-30,3,2
+Настя,annwalkmanmgmt@gmail.com,2026-03-23,32,27
+Настя,annwalkmanmgmt@gmail.com,2026-03-30,23,10
 Настя,oliviamerrickson@gmail.com,2024-01-01,0,0
 Настя,oliviamerrickson@gmail.com,2024-01-08,0,0
 Настя,oliviamerrickson@gmail.com,2024-01-15,0,0
@@ -2476,7 +2476,7 @@ sales,email,week,sent,received
 Настя,oliviamerrickson@gmail.com,2026-03-09,0,0
 Настя,oliviamerrickson@gmail.com,2026-03-16,15,4
 Настя,oliviamerrickson@gmail.com,2026-03-23,101,7
-Настя,oliviamerrickson@gmail.com,2026-03-30,10,0
+Настя,oliviamerrickson@gmail.com,2026-03-30,11,0
 Настя,tammy.melloww@gmail.com,2024-01-01,0,0
 Настя,tammy.melloww@gmail.com,2024-01-08,0,0
 Настя,tammy.melloww@gmail.com,2024-01-15,0,0
@@ -2712,4 +2712,4 @@ sales,email,week,sent,received
 Настя,walkman.annie@gmail.com,2026-03-09,129,2
 Настя,walkman.annie@gmail.com,2026-03-16,166,16
 Настя,walkman.annie@gmail.com,2026-03-23,215,23
-Настя,walkman.annie@gmail.com,2026-03-30,28,1
+Настя,walkman.annie@gmail.com,2026-03-30,31,9
