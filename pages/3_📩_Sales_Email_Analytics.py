@@ -19,7 +19,7 @@ try:
 except Exception:
     pass
 
-DATA_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "emails_monthly.csv")
+DATA_FILE = os.path.join(os.path.dirname(__file__), "data", "emails_monthly.csv")
 
 
 def _csv_mtime():
@@ -130,7 +130,7 @@ with st.expander("📋 Данные по месяцам (таблица)"):
     st.dataframe(tbl, hide_index=True, width="stretch")
 
 # --- График: Отправлено/получено по неделям ---
-WEEKLY_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "emails_weekly.csv")
+WEEKLY_FILE = os.path.join(os.path.dirname(__file__), "data", "emails_weekly.csv")
 if os.path.exists(WEEKLY_FILE):
     st.divider()
     st.subheader("📬 Отправлено и получено писем — по неделям")
@@ -397,7 +397,7 @@ else:
     st.info("Выбери хотя бы одного сэйлза")
 
 # --- График: Исходящие по дням (30 дней) ---
-DAILY_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "daily_sent_30d.csv")
+DAILY_FILE = os.path.join(os.path.dirname(__file__), "data", "daily_sent_30d.csv")
 if os.path.exists(DAILY_FILE):
     st.divider()
     st.subheader("📅 Исходящие письма за последние 30 дней — по дням")
@@ -483,3 +483,125 @@ if not df_snovio.empty:
         pivot_snovio = by_sales_snovio.pivot(index="month", columns="sales", values="sent").fillna(0).astype(int)
         pivot_snovio.index.name = "Месяц"
         st.dataframe(pivot_snovio, use_container_width=True)
+
+# --- График: Типы исходящих писем по сэйлзам ---
+TYPES_FILE = os.path.join(os.path.dirname(__file__), "data", "outgoing_types_monthly.csv")
+if os.path.exists(TYPES_FILE):
+    st.divider()
+    st.subheader("📊 Типы исходящих писем — по сэйлз-менеджерам")
+    st.caption("Классификация: первое письмо (cold outreach), ответ, follow-up, forward")
+
+    @st.cache_data
+    def load_types(_mtime):
+        tdf = pd.read_csv(TYPES_FILE)
+        for col in ["total", "first", "reply", "followup", "forward", "other"]:
+            tdf[col] = pd.to_numeric(tdf[col], errors="coerce").fillna(0).astype(int)
+        return tdf
+
+    df_types = load_types(os.path.getmtime(TYPES_FILE))
+
+    # Исключаем Snovio-почты
+    df_types = df_types[~df_types["email"].isin(SNOVIO_EMAILS)]
+
+    # Фильтр по сэйлзам
+    all_sales_types = sorted(df_types["sales"].unique())
+    selected_sales_types = st.multiselect(
+        "Фильтр по сэйлзу:",
+        options=all_sales_types,
+        default=all_sales_types,
+        key="sales_outgoing_types",
+    )
+
+    if selected_sales_types:
+        df_types_filtered = df_types[df_types["sales"].isin(selected_sales_types)]
+
+        # Агрегируем по месяцам
+        types_monthly = (
+            df_types_filtered.groupby("month")[["first", "reply", "followup", "forward", "other"]]
+            .sum()
+            .reset_index()
+            .sort_values("month")
+        )
+
+        TYPE_LABELS = {
+            "first": "📤 Первое письмо",
+            "reply": "↩️ Ответ",
+            "followup": "🔁 Follow-up",
+            "forward": "➡️ Forward",
+            "other": "❓ Другое",
+        }
+        TYPE_COLORS = {
+            "first": "#4A90D9",
+            "reply": "#50C878",
+            "followup": "#FFB347",
+            "forward": "#B19CD9",
+            "other": "#888888",
+        }
+
+        fig_types = go.Figure()
+        for col in ["first", "reply", "followup", "forward", "other"]:
+            if types_monthly[col].sum() > 0:
+                fig_types.add_trace(go.Bar(
+                    name=TYPE_LABELS[col],
+                    x=types_monthly["month"],
+                    y=types_monthly[col],
+                    marker_color=TYPE_COLORS[col],
+                    text=types_monthly[col],
+                    textposition="inside",
+                ))
+
+        fig_types.update_layout(
+            barmode="stack",
+            height=520,
+            xaxis_tickangle=-45,
+            yaxis_title="Количество писем",
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+            margin=dict(b=100, t=60),
+        )
+
+        st.plotly_chart(fig_types, use_container_width=True)
+
+        # Разбивка по сэйлзам
+        st.caption("В разрезе по менеджерам:")
+        types_by_sales = (
+            df_types_filtered.groupby(["month", "sales"])[["first", "reply", "followup", "forward", "other"]]
+            .sum()
+            .reset_index()
+        )
+
+        for sales_name in sorted(types_by_sales["sales"].unique()):
+            subset = types_by_sales[types_by_sales["sales"] == sales_name].sort_values("month")
+            fig_s = go.Figure()
+            for col in ["first", "reply", "followup", "forward", "other"]:
+                if subset[col].sum() > 0:
+                    fig_s.add_trace(go.Bar(
+                        name=TYPE_LABELS[col],
+                        x=subset["month"],
+                        y=subset[col],
+                        marker_color=TYPE_COLORS[col],
+                        text=subset[col],
+                        textposition="inside",
+                    ))
+
+            fig_s.update_layout(
+                barmode="stack",
+                height=400,
+                title=f"👤 {sales_name}",
+                xaxis_tickangle=-45,
+                yaxis_title="Количество писем",
+                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+                margin=dict(b=80, t=80),
+            )
+            st.plotly_chart(fig_s, use_container_width=True)
+
+        with st.expander("📋 Типы исходящих (таблица)"):
+            types_table = (
+                df_types_filtered.groupby(["month", "sales"])[["first", "reply", "followup", "forward", "other", "total"]]
+                .sum()
+                .reset_index()
+                .sort_values(["month", "sales"])
+            )
+            types_table.columns = ["Месяц", "Сэйлз", "📤 Первое", "↩️ Ответ", "🔁 Follow-up", "➡️ Forward", "❓ Другое", "Всего"]
+            st.dataframe(types_table, hide_index=True, use_container_width=True)
+    else:
+        st.info("Выбери хотя бы одного сэйлза")
