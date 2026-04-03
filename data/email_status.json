@@ -4,7 +4,7 @@
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-02 11:08:18",
+    "last_check": "2026-04-03 10:52:59",
     "messages_total": 53983
   },
   "katrin@fansy.cz": {
@@ -12,7 +12,7 @@
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-02 11:08:18",
+    "last_check": "2026-04-03 10:53:00",
     "messages_total": 225281
   },
   "emily@inperson.agency": {
@@ -20,167 +20,167 @@
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-02 11:08:19",
-    "messages_total": 284008
+    "last_check": "2026-04-03 10:53:00",
+    "messages_total": 284045
   },
   "sophia@inperson-group.com": {
     "sales": "Джеля",
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-02 11:08:19",
-    "messages_total": 15614
+    "last_check": "2026-04-03 10:53:02",
+    "messages_total": 15800
   },
   "annie@inperson.agency": {
     "sales": "Настя",
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-02 11:08:20",
-    "messages_total": 63814
+    "last_check": "2026-04-03 10:53:04",
+    "messages_total": 63902
   },
   "annie@inperson-group.com": {
     "sales": "Настя",
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-02 11:08:20",
-    "messages_total": 6623
+    "last_check": "2026-04-03 10:53:06",
+    "messages_total": 6824
   },
   "amelia@inperson-group.com": {
     "sales": "Ксения",
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-02 11:08:20",
-    "messages_total": 4845
+    "last_check": "2026-04-03 10:53:08",
+    "messages_total": 5045
   },
   "milukovasofia457@gmail.com": {
     "sales": "Джеля",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:20",
-    "messages_total": 0
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 10:53:10",
+    "messages_total": 9843
   },
   "aalexantoos@gmail.com": {
     "sales": "Джеля",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:21",
-    "messages_total": 0
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 10:53:10",
+    "messages_total": 13698
   },
   "gachakeril@gmail.com": {
     "sales": "Джеля",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:21",
-    "messages_total": 0
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 10:53:11",
+    "messages_total": 20485
   },
   "mijaresenely523@gmail.com": {
     "sales": "Джеля",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:21",
-    "messages_total": 0
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 10:53:12",
+    "messages_total": 22684
   },
   "klavarossi@gmail.com": {
     "sales": "Джеля",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:21",
-    "messages_total": 0
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 10:53:13",
+    "messages_total": 22715
   },
   "annwalkmanmgmt@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:21",
-    "messages_total": 0
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 10:53:13",
+    "messages_total": 1534
   },
   "walkman.annie@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:21",
-    "messages_total": 0
+    "status": "no_token",
+    "error": "Токен не найден",
+    "last_check": "2026-04-03 10:53:14",
+    "messages_total": null
   },
   "annie.applin@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:21",
-    "messages_total": 0
+    "status": "no_token",
+    "error": "Токен не найден",
+    "last_check": "2026-04-03 10:53:14",
+    "messages_total": null
   },
   "ann.gruv@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-02 11:08:22",
-    "messages_total": 26986
+    "last_check": "2026-04-03 10:53:14",
+    "messages_total": 26987
   },
   "tammy.melloww@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:22",
-    "messages_total": 0
+    "status": "no_token",
+    "error": "Токен не найден",
+    "last_check": "2026-04-03 10:53:14",
+    "messages_total": null
   },
   "oliviamerrickson@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:22",
-    "messages_total": 0
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 10:53:15",
+    "messages_total": 5
   },
   "roksiblackfansy@gmail.com": {
     "sales": "Ксения",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:22",
-    "messages_total": 0
+    "status": "no_token",
+    "error": "Токен не найден",
+    "last_check": "2026-04-03 10:53:15",
+    "messages_total": null
   },
   "roxanawinterhold@gmail.com": {
     "sales": "Ксения",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:22",
-    "messages_total": 0
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 10:53:16",
+    "messages_total": 6213
   },
   "roxanabarnum@gmail.com": {
     "sales": "Ксения",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:22",
-    "messages_total": 0
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 10:53:17",
+    "messages_total": 173
   },
   "blueskyroxana@gmail.com": {
     "sales": "Ксения",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:22",
-    "messages_total": 0
+    "status": "no_token",
+    "error": "Токен не найден",
+    "last_check": "2026-04-03 10:53:17",
+    "messages_total": null
   },
   "woodenwarekristian@gmail.com": {
     "sales": "Ксения",
     "type": "gmail",
-    "status": "error",
-    "error": "('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})",
-    "last_check": "2026-04-02 11:08:22",
-    "messages_total": 0
+    "status": "no_token",
+    "error": "Токен не найден",
+    "last_check": "2026-04-03 10:53:17",
+    "messages_total": null
   }
 }
