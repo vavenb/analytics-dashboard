@@ -19,7 +19,7 @@ try:
 except Exception:
     pass
 
-DATA_FILE = os.path.join(os.path.dirname(__file__), "data", "emails_monthly.csv")
+DATA_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "emails_monthly.csv")
 
 
 def _csv_mtime():
@@ -130,7 +130,7 @@ with st.expander("📋 Данные по месяцам (таблица)"):
     st.dataframe(tbl, hide_index=True, width="stretch")
 
 # --- График: Отправлено/получено по неделям ---
-WEEKLY_FILE = os.path.join(os.path.dirname(__file__), "data", "emails_weekly.csv")
+WEEKLY_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "emails_weekly.csv")
 if os.path.exists(WEEKLY_FILE):
     st.divider()
     st.subheader("📬 Отправлено и получено писем — по неделям")
@@ -397,7 +397,7 @@ else:
     st.info("Выбери хотя бы одного сэйлза")
 
 # --- График: Исходящие по дням (30 дней) ---
-DAILY_FILE = os.path.join(os.path.dirname(__file__), "data", "daily_sent_30d.csv")
+DAILY_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "daily_sent_30d.csv")
 if os.path.exists(DAILY_FILE):
     st.divider()
     st.subheader("📅 Исходящие письма за последние 30 дней — по дням")
@@ -485,7 +485,7 @@ if not df_snovio.empty:
         st.dataframe(pivot_snovio, use_container_width=True)
 
 # --- График: Типы исходящих писем по сэйлзам ---
-TYPES_FILE = os.path.join(os.path.dirname(__file__), "data", "outgoing_types_monthly.csv")
+TYPES_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "outgoing_types_monthly.csv")
 if os.path.exists(TYPES_FILE):
     st.divider()
     st.subheader("📊 Типы исходящих писем — по сэйлз-менеджерам")
