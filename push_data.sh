@@ -15,6 +15,7 @@ cp "$EMAIL_DIR/data/emails_monthly.csv"  "$DASHBOARD_DIR/data/emails_monthly.csv
 cp "$EMAIL_DIR/data/emails_weekly.csv"   "$DASHBOARD_DIR/data/emails_weekly.csv"
 cp "$EMAIL_DIR/data/daily_sent_30d.csv"  "$DASHBOARD_DIR/data/daily_sent_30d.csv"
 cp "$EMAIL_DIR/data/email_status.json"   "$DASHBOARD_DIR/data/email_status.json"
+cp "$EMAIL_DIR/data/outgoing_types_monthly.csv" "$DASHBOARD_DIR/data/outgoing_types_monthly.csv"
 cp "$SALES_DIR/data/sales_report.csv"    "$DASHBOARD_DIR/data/sales_report.csv"
 
 # Пушим если есть изменения

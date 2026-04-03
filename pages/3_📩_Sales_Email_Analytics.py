@@ -28,7 +28,7 @@ def _csv_mtime():
 
 
 @st.cache_data
-def load_data(_mtime):
+def load_data(mtime):
     df = pd.read_csv(DATA_FILE)
     df["sent"] = pd.to_numeric(df["sent"], errors="coerce").fillna(0).astype(int)
     df["received"] = pd.to_numeric(df["received"], errors="coerce").fillna(0).astype(int)
@@ -137,7 +137,7 @@ if os.path.exists(WEEKLY_FILE):
     st.caption("Суммарно по всем сэйлзам и аккаунтам")
 
     @st.cache_data
-    def load_weekly(_mtime):
+    def load_weekly(mtime):
         wdf = pd.read_csv(WEEKLY_FILE)
         wdf["sent"] = pd.to_numeric(wdf["sent"], errors="coerce").fillna(0).astype(int)
         wdf["received"] = pd.to_numeric(wdf["received"], errors="coerce").fillna(0).astype(int)
