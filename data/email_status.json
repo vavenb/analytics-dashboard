@@ -4,7 +4,7 @@
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:52:59",
+    "last_check": "2026-04-03 11:08:59",
     "messages_total": 53983
   },
   "katrin@fansy.cz": {
@@ -12,7 +12,7 @@
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:00",
+    "last_check": "2026-04-03 11:09:00",
     "messages_total": 225281
   },
   "emily@inperson.agency": {
@@ -20,47 +20,47 @@
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:00",
-    "messages_total": 284045
+    "last_check": "2026-04-03 11:09:01",
+    "messages_total": 284046
   },
   "sophia@inperson-group.com": {
     "sales": "Джеля",
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:02",
-    "messages_total": 15800
+    "last_check": "2026-04-03 11:09:02",
+    "messages_total": 15801
   },
   "annie@inperson.agency": {
     "sales": "Настя",
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:04",
-    "messages_total": 63902
+    "last_check": "2026-04-03 11:09:04",
+    "messages_total": 63903
   },
   "annie@inperson-group.com": {
     "sales": "Настя",
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:06",
-    "messages_total": 6824
+    "last_check": "2026-04-03 11:09:07",
+    "messages_total": 6825
   },
   "amelia@inperson-group.com": {
     "sales": "Ксения",
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:08",
-    "messages_total": 5045
+    "last_check": "2026-04-03 11:09:09",
+    "messages_total": 5053
   },
   "milukovasofia457@gmail.com": {
     "sales": "Джеля",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:10",
+    "last_check": "2026-04-03 11:09:10",
     "messages_total": 9843
   },
   "aalexantoos@gmail.com": {
@@ -68,7 +68,7 @@
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:10",
+    "last_check": "2026-04-03 11:09:11",
     "messages_total": 13698
   },
   "gachakeril@gmail.com": {
@@ -76,7 +76,7 @@
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:11",
+    "last_check": "2026-04-03 11:09:12",
     "messages_total": 20485
   },
   "mijaresenely523@gmail.com": {
@@ -84,7 +84,7 @@
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:12",
+    "last_check": "2026-04-03 11:09:13",
     "messages_total": 22684
   },
   "klavarossi@gmail.com": {
@@ -92,71 +92,71 @@
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:13",
-    "messages_total": 22715
+    "last_check": "2026-04-03 11:09:14",
+    "messages_total": 22716
   },
   "annwalkmanmgmt@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:13",
+    "last_check": "2026-04-03 11:09:14",
     "messages_total": 1534
   },
   "walkman.annie@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
-    "status": "no_token",
-    "error": "Токен не найден",
-    "last_check": "2026-04-03 10:53:14",
-    "messages_total": null
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 11:09:15",
+    "messages_total": 27169
   },
   "annie.applin@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
-    "status": "no_token",
-    "error": "Токен не найден",
-    "last_check": "2026-04-03 10:53:14",
-    "messages_total": null
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 11:09:16",
+    "messages_total": 1960
   },
   "ann.gruv@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:14",
+    "last_check": "2026-04-03 11:09:16",
     "messages_total": 26987
   },
   "tammy.melloww@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
-    "status": "no_token",
-    "error": "Токен не найден",
-    "last_check": "2026-04-03 10:53:14",
-    "messages_total": null
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 11:09:17",
+    "messages_total": 32234
   },
   "oliviamerrickson@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:15",
+    "last_check": "2026-04-03 11:09:18",
     "messages_total": 5
   },
   "roksiblackfansy@gmail.com": {
     "sales": "Ксения",
     "type": "gmail",
-    "status": "no_token",
-    "error": "Токен не найден",
-    "last_check": "2026-04-03 10:53:15",
-    "messages_total": null
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 11:09:19",
+    "messages_total": 32234
   },
   "roxanawinterhold@gmail.com": {
     "sales": "Ксения",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:16",
+    "last_check": "2026-04-03 11:09:19",
     "messages_total": 6213
   },
   "roxanabarnum@gmail.com": {
@@ -164,23 +164,23 @@
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-03 10:53:17",
+    "last_check": "2026-04-03 11:09:20",
     "messages_total": 173
   },
   "blueskyroxana@gmail.com": {
     "sales": "Ксения",
     "type": "gmail",
-    "status": "no_token",
-    "error": "Токен не найден",
-    "last_check": "2026-04-03 10:53:17",
-    "messages_total": null
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 11:09:20",
+    "messages_total": 120
   },
   "woodenwarekristian@gmail.com": {
     "sales": "Ксения",
     "type": "gmail",
-    "status": "no_token",
-    "error": "Токен не найден",
-    "last_check": "2026-04-03 10:53:17",
-    "messages_total": null
+    "status": "ok",
+    "error": null,
+    "last_check": "2026-04-03 11:09:21",
+    "messages_total": 109
   }
 }
