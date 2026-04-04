@@ -28,7 +28,7 @@ MONTH_ORDER = [
 ]
 
 
-@st.cache_data
+@st.cache_data(ttl=3600)
 def load_data():
     df = pd.read_csv(DATA_FILE)
     # Числовые колонки

@@ -27,7 +27,7 @@ def _csv_mtime():
     return os.path.getmtime(DATA_FILE)
 
 
-@st.cache_data
+@st.cache_data(ttl=3600)
 def load_data(mtime):
     df = pd.read_csv(DATA_FILE)
     df["sent"] = pd.to_numeric(df["sent"], errors="coerce").fillna(0).astype(int)
@@ -491,7 +491,7 @@ if os.path.exists(TYPES_FILE):
     st.subheader("📊 Типы исходящих писем — по сэйлз-менеджерам")
     st.caption("Классификация: первое письмо (cold outreach), ответ, follow-up, forward")
 
-    @st.cache_data
+    @st.cache_data(ttl=3600)
     def load_types(mtime):
         tdf = pd.read_csv(TYPES_FILE)
         for col in ["total", "first", "reply", "followup", "forward", "other"]:
