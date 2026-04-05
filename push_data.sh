@@ -7,6 +7,7 @@ SCOUT_DIR="/data/.openclaw/workspace-coder/scout_dashboard"
 SNOVIO_DIR="/data/.openclaw/workspace-coder/snovio_dashboard"
 EMAIL_DIR="/data/.openclaw/workspace-coder/email_analytics"
 SALES_DIR="/data/.openclaw/workspace-coder/sales_statistics"
+WEEKLY_SCOUT_DIR="/data/.openclaw/workspace-coder/weekly_scout_dashboard"
 
 # Копируем данные
 cp "$SCOUT_DIR/data/raw.csv"             "$DASHBOARD_DIR/data/scout_raw.csv"
@@ -17,6 +18,7 @@ cp "$EMAIL_DIR/data/daily_sent_30d.csv"  "$DASHBOARD_DIR/data/daily_sent_30d.csv
 cp "$EMAIL_DIR/data/email_status.json"   "$DASHBOARD_DIR/data/email_status.json"
 cp "$EMAIL_DIR/data/outgoing_types_monthly.csv" "$DASHBOARD_DIR/data/outgoing_types_monthly.csv"
 cp "$SALES_DIR/data/sales_report.csv"    "$DASHBOARD_DIR/data/sales_report.csv"
+cp "$WEEKLY_SCOUT_DIR/data/weekly_report.csv" "$DASHBOARD_DIR/data/weekly_report.csv"
 
 # Пушим если есть изменения
 cd "$DASHBOARD_DIR"
