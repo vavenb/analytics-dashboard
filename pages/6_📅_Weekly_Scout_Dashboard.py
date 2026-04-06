@@ -58,10 +58,10 @@ def load_snovio_data():
     
     # Преобразуем дату в строку для отображения (неделя)
     df["week"] = df["date"].dt.strftime("%d.%m.%Y")
-    # date - это воскресенье (конец недели), week_start - понедельник предыдущей недели
-    df["week_start"] = df["date"] - pd.to_timedelta(6, unit='D')
-    # Формат: "02.03 – 08.03.2026" (начало недели – конец недели с годом)
-    df["week_label"] = df["week_start"].dt.strftime("%d.%m") + " – " + df["date"].dt.strftime("%d.%m.%Y")
+    # date - это понедельник (начало недели)
+    df["week_start"] = df["date"]
+    # Формат: "09.03 – 15.03.2026" (понедельник – воскресенье с годом)
+    df["week_label"] = df["week_start"].dt.strftime("%d.%m") + " – " + (df["week_start"] + pd.Timedelta(days=6)).dt.strftime("%d.%m.%Y")
     
     # Для удобства группировки
     df["year_week"] = df["date"].dt.strftime("%Y-%W")
@@ -144,11 +144,10 @@ with col_s1:
 
 with col_s2:
     # Выбор недель
-    # Создаем словарь для отображения: дата -> диапазон недели
+    # Создаем словарь для отображения: дата (понедельник) -> диапазон недели
     week_display_map = {}
     for date_val in df_snovio["date"].unique():
-        week_start = date_val - pd.to_timedelta(6, unit='D')
-        week_label = week_start.strftime("%d.%m") + " – " + date_val.strftime("%d.%m.%Y")
+        week_label = date_val.strftime("%d.%m") + " – " + (date_val + pd.Timedelta(days=6)).strftime("%d.%m.%Y")
         week_display_map[date_val] = week_label
     
     snovio_weeks = sorted(df_snovio["date"].unique())
