@@ -34,8 +34,8 @@ SNOVIO_DATA_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "dat
 def load_snovio_data():
     """Загружает CSV с данными Weekly Report для Snovio."""
     if not os.path.exists(SNOVIO_DATA_FILE):
-        # Если файла нет, показываем ошибку
-        st.warning(f"Файл {SNOVIO_DATA_FILE} не найден. Данные Weekly Report ещё не загружены.")
+        # Если файла нет, пытаемся загрузить данные
+        st.warning(f"Файл {SNOVIO_DATA_FILE} не найден. Запустите fetch_weekly_report.py")
         return pd.DataFrame()
     
     df = pd.read_csv(SNOVIO_DATA_FILE, parse_dates=["date"])
@@ -59,7 +59,8 @@ def load_snovio_data():
     # Преобразуем дату в строку для отображения (неделя)
     df["week"] = df["date"].dt.strftime("%d.%m.%Y")
     df["week_start"] = df["date"] - pd.to_timedelta(df["date"].dt.weekday, unit='D')
-    df["week_label"] = df["week_start"].dt.strftime("%d.%m") + " – " + (df["week_start"] + pd.Timedelta(days=6)).dt.strftime("%d.%m")
+    # Формат: "24.03 – 30.03.2026" (начало недели – конец недели с годом)
+    df["week_label"] = df["week_start"].dt.strftime("%d.%m") + " – " + (df["week_start"] + pd.Timedelta(days=6)).dt.strftime("%d.%m.%Y")
     
     # Для удобства группировки
     df["year_week"] = df["date"].dt.strftime("%Y-%W")
@@ -119,7 +120,7 @@ if not df_snovio.empty:
 st.subheader("📊 Добавлено в Snovio / Snovio ответы / CR в ответ")
 
 if df_snovio.empty:
-    st.info("📭 Нет данных Snovio. Данные Weekly Report ещё не загружены.")
+    st.info("📭 Нет данных Snovio. Запустите fetch_weekly_report.py для загрузки данных из Google Sheets.")
     st.stop()
 
 # Фильтры для Snovio
@@ -142,6 +143,13 @@ with col_s1:
 
 with col_s2:
     # Выбор недель
+    # Создаем словарь для отображения: дата -> диапазон недели
+    week_display_map = {}
+    for date_val in df_snovio["date"].unique():
+        week_start = date_val - pd.to_timedelta(date_val.weekday, unit='D')
+        week_label = week_start.strftime("%d.%m") + " – " + (week_start + pd.Timedelta(days=6)).strftime("%d.%m.%Y")
+        week_display_map[date_val] = week_label
+    
     snovio_weeks = sorted(df_snovio["date"].unique())
     if snovio_weeks:
         default_snovio_weeks = snovio_weeks[-4:] if len(snovio_weeks) >= 4 else snovio_weeks
@@ -149,7 +157,7 @@ with col_s2:
             "Недели:",
             options=snovio_weeks,
             default=default_snovio_weeks,
-            format_func=lambda d: d.strftime("%d.%m.%Y"),
+            format_func=lambda d: week_display_map[d],
             help="Выбери недели для анализа"
         )
     else:
@@ -189,9 +197,9 @@ if snovio_group_by == "По неделям":
     
     grouped_snovio = grouped_snovio.sort_values("week_start")
     
-    # Вычисляем CR
+    # Вычисляем CR (ограничиваем максимум 100%)
     grouped_snovio["snovio_cr"] = grouped_snovio.apply(
-        lambda x: round(x["snovio_replies"] / x["snovio_added"] * 100, 2) if x["snovio_added"] > 0 else 0,
+        lambda x: min(round(x["snovio_replies"] / x["snovio_added"] * 100, 2), 100) if x["snovio_added"] > 0 else 0,
         axis=1
     )
     
@@ -953,7 +961,7 @@ if snovio_group_by == "По неделям":
         st.metric("Минимальный CR", f"{min_cr:.1f}%")
 
 elif snovio_group_by == "По скаутам":
-    # Показываем таблицу с данми по скаутам
+    # Показываем таблицу с данными по скаутам
     display_df = grouped_snovio[["scout", "snovio_added", "snovio_replies", "snovio_cr", "date"]].copy()
     display_df.columns = ["Скаут", "Добавлено в Snovio", "Ответов Snovio", "CR (%)", "Недель работы"]
     display_df["CR (%)"] = display_df["CR (%)"].map(lambda x: f"{x:.1f}%")
@@ -1159,4 +1167,4 @@ else:
 
 # --- Подвал ---
 st.divider()
-st.caption("Weekly Scout Dashboard • Данные из Google Sheets 'Weekly Report' • Обновление автоматическое")
+st.caption("Weekly Scout Dashboard • Данные из Google Sheets 'Weekly Report' • Обновление вручную")
