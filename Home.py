@@ -13,3 +13,5 @@ st.page_link("pages/2_📊_TT_IG_Scout_Dashboard.py", label="TT/IG Scout Dashboa
 st.page_link("pages/3_💰_Sales_Statistics.py", label="Sales Statistics", icon="💰")
 st.page_link("pages/4_📩_Sales_Email_Analytics.py", label="Sales Email Analytics", icon="📩")
 st.page_link("pages/5_🔍_Sales_Email_Status.py", label="Sales Email Status", icon="🔍")
+
+# deploy trigger
