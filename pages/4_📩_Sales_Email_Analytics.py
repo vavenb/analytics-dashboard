@@ -26,16 +26,20 @@ DATA_CANDIDATES = [
     os.path.join(BASE_DIR, "data", "emails_monthly.csv"),
     os.path.join(os.path.dirname(BASE_DIR), "data", "emails_monthly.csv"),
 ]
-DATA_FILE = next((p for p in DATA_CANDIDATES if os.path.exists(p)), DATA_CANDIDATES[0])
+DATA_FILE = next((p for p in DATA_CANDIDATES if os.path.exists(p)), None)
 
 
 def _csv_mtime():
     """Возвращает время модификации CSV для сброса кэша."""
+    if not DATA_FILE:
+        return None
     return os.path.getmtime(DATA_FILE)
 
 
 @st.cache_data(ttl=3600)
 def load_data(mtime):
+    if not DATA_FILE:
+        return pd.DataFrame(columns=["sales", "email", "month", "sent", "received"])
     df = pd.read_csv(DATA_FILE)
     df["sent"] = pd.to_numeric(df["sent"], errors="coerce").fillna(0).astype(int)
     df["received"] = pd.to_numeric(df["received"], errors="coerce").fillna(0).astype(int)
@@ -53,15 +57,19 @@ SNOVIO_EMAILS = {
 }
 
 df_all = load_data(_csv_mtime())
-df = df_all[~df_all["email"].isin(SNOVIO_EMAILS)]
+df = df_all[~df_all["email"].isin(SNOVIO_EMAILS)] if not df_all.empty else df_all
 
 # --- Шапка ---
 st.title("📩 Sales Email Analytics")
 
 TZ_MSK = timezone(timedelta(hours=3))
-csv_mtime = os.path.getmtime(DATA_FILE)
-csv_updated = datetime.fromtimestamp(csv_mtime, tz=TZ_MSK).strftime("%d.%m.%Y %H:%M")
-st.caption(f"🕐 Данные обновлены: **{csv_updated}**")
+if DATA_FILE and os.path.exists(DATA_FILE):
+    csv_mtime = os.path.getmtime(DATA_FILE)
+    csv_updated = datetime.fromtimestamp(csv_mtime, tz=TZ_MSK).strftime("%d.%m.%Y %H:%M")
+    st.caption(f"🕐 Данные обновлены: **{csv_updated}**")
+else:
+    st.error("Не найден файл данных emails_monthly.csv в продовом окружении. Проверь папку analytics-dashboard/data/ и redeploy приложения.")
+    st.stop()
 
 st.divider()
 
