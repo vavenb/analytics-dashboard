@@ -9,6 +9,7 @@ import plotly.graph_objects as go
 import streamlit as st
 import os
 import json
+from pathlib import Path
 from datetime import datetime, timezone, timedelta
 
 try:
@@ -20,20 +21,23 @@ try:
 except Exception:
     pass
 
-BASE_DIR = os.path.dirname(__file__)
-DATA_CANDIDATES = [
-    os.path.join(BASE_DIR, "..", "data", "emails_monthly.csv"),
-    os.path.join(BASE_DIR, "data", "emails_monthly.csv"),
-    os.path.join(os.path.dirname(BASE_DIR), "data", "emails_monthly.csv"),
-]
-DATA_FILE = next((p for p in DATA_CANDIDATES if os.path.exists(p)), None)
+BASE_DIR = Path(__file__).resolve().parent
+REPO_ROOT = BASE_DIR.parent
+DATA_DIR = REPO_ROOT / "data"
+DATA_FILE = DATA_DIR / "emails_monthly.csv"
 
+WEEKLY_FILE = DATA_DIR / "emails_weekly.csv"
+DAILY_FILE = DATA_DIR / "daily_sent_30d.csv"
+TYPES_FILE = DATA_DIR / "outgoing_types_monthly.csv"
+INCOMING_DIST_FILE_1D = DATA_DIR / "incoming_distribution" / "summary_1d.json"
+INCOMING_DIST_FILE_7D = DATA_DIR / "incoming_distribution" / "summary_7d.json"
+INCOMING_DIST_FILE_2026_MONTHLY = DATA_DIR / "incoming_distribution" / "summary_2026_monthly.json"
 
 def _csv_mtime():
     """Возвращает время модификации CSV для сброса кэша."""
     if not DATA_FILE:
         return None
-    return os.path.getmtime(DATA_FILE)
+    return DATA_FILE.stat().st_mtime if DATA_FILE.exists() else None
 
 
 @st.cache_data(ttl=3600)
@@ -63,8 +67,8 @@ df = df_all[~df_all["email"].isin(SNOVIO_EMAILS)] if not df_all.empty else df_al
 st.title("📩 Sales Email Analytics")
 
 TZ_MSK = timezone(timedelta(hours=3))
-if DATA_FILE and os.path.exists(DATA_FILE):
-    csv_mtime = os.path.getmtime(DATA_FILE)
+if DATA_FILE.exists():
+    csv_mtime = DATA_FILE.stat().st_mtime
     csv_updated = datetime.fromtimestamp(csv_mtime, tz=TZ_MSK).strftime("%d.%m.%Y %H:%M")
     st.caption(f"🕐 Данные обновлены: **{csv_updated}**")
 else:
@@ -145,7 +149,7 @@ with st.expander("📋 Данные по месяцам (таблица)"):
     st.dataframe(tbl, hide_index=True, width="stretch")
 
 # --- График: Отправлено/получено по неделям ---
-WEEKLY_FILE = next((p for p in [os.path.join(BASE_DIR, "..", "data", "emails_weekly.csv"), os.path.join(BASE_DIR, "data", "emails_weekly.csv"), os.path.join(os.path.dirname(BASE_DIR), "data", "emails_weekly.csv")] if os.path.exists(p)), os.path.join(BASE_DIR, "..", "data", "emails_weekly.csv"))
+
 if os.path.exists(WEEKLY_FILE):
     st.divider()
     st.subheader("📬 Отправлено и получено писем — по неделям")
@@ -412,7 +416,7 @@ else:
     st.info("Выбери хотя бы одного сэйлза")
 
 # --- График: Исходящие по дням (30 дней) ---
-DAILY_FILE = next((p for p in [os.path.join(BASE_DIR, "..", "data", "daily_sent_30d.csv"), os.path.join(BASE_DIR, "data", "daily_sent_30d.csv"), os.path.join(os.path.dirname(BASE_DIR), "data", "daily_sent_30d.csv")] if os.path.exists(p)), os.path.join(BASE_DIR, "..", "data", "daily_sent_30d.csv"))
+
 if os.path.exists(DAILY_FILE):
     st.divider()
     st.subheader("📅 Исходящие письма за последние 30 дней — по дням")
@@ -500,7 +504,7 @@ if not df_snovio.empty:
         st.dataframe(pivot_snovio, use_container_width=True)
 
 # --- График: Типы исходящих писем по сэйлзам ---
-TYPES_FILE = next((p for p in [os.path.join(BASE_DIR, "..", "data", "outgoing_types_monthly.csv"), os.path.join(BASE_DIR, "data", "outgoing_types_monthly.csv"), os.path.join(os.path.dirname(BASE_DIR), "data", "outgoing_types_monthly.csv")] if os.path.exists(p)), os.path.join(BASE_DIR, "..", "data", "outgoing_types_monthly.csv"))
+
 if os.path.exists(TYPES_FILE):
     st.divider()
     st.subheader("📊 Типы исходящих писем — по сэйлз-менеджерам")
@@ -589,9 +593,9 @@ if os.path.exists(TYPES_FILE):
         st.info("Выбери хотя бы одного сэйлза")
 
 # --- Новый отдельный блок: распределение входящих адресов ---
-INCOMING_DIST_FILE_1D = next((p for p in [os.path.join(BASE_DIR, "..", "data", "incoming_distribution", "summary_1d.json"), os.path.join(BASE_DIR, "data", "incoming_distribution", "summary_1d.json"), os.path.join(os.path.dirname(BASE_DIR), "data", "incoming_distribution", "summary_1d.json")] if os.path.exists(p)), os.path.join(BASE_DIR, "..", "data", "incoming_distribution", "summary_1d.json"))
-INCOMING_DIST_FILE_7D = next((p for p in [os.path.join(BASE_DIR, "..", "data", "incoming_distribution", "summary_7d.json"), os.path.join(BASE_DIR, "data", "incoming_distribution", "summary_7d.json"), os.path.join(os.path.dirname(BASE_DIR), "data", "incoming_distribution", "summary_7d.json")] if os.path.exists(p)), os.path.join(BASE_DIR, "..", "data", "incoming_distribution", "summary_7d.json"))
-INCOMING_DIST_FILE_2026_MONTHLY = next((p for p in [os.path.join(BASE_DIR, "..", "data", "incoming_distribution", "summary_2026_monthly.json"), os.path.join(BASE_DIR, "data", "incoming_distribution", "summary_2026_monthly.json"), os.path.join(os.path.dirname(BASE_DIR), "data", "incoming_distribution", "summary_2026_monthly.json")] if os.path.exists(p)), os.path.join(BASE_DIR, "..", "data", "incoming_distribution", "summary_2026_monthly.json"))
+
+
+
 
 @st.cache_data(ttl=3600)
 def load_incoming_distribution(path, mtime):
