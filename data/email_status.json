@@ -4,63 +4,63 @@
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 07:00:12",
-    "messages_total": 53983
+    "last_check": "2026-04-07 07:00:14",
+    "messages_total": 53995
   },
   "katrin@fansy.cz": {
     "sales": "Джеля",
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 07:00:13",
-    "messages_total": 225282
+    "last_check": "2026-04-07 07:00:15",
+    "messages_total": 225281
   },
   "emily@inperson.agency": {
     "sales": "Джеля",
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 07:00:14",
-    "messages_total": 284130
+    "last_check": "2026-04-07 07:00:16",
+    "messages_total": 284171
   },
   "sophia@inperson-group.com": {
     "sales": "Джеля",
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 07:00:16",
-    "messages_total": 16064
+    "last_check": "2026-04-07 07:00:17",
+    "messages_total": 16238
   },
   "annie@inperson.agency": {
     "sales": "Настя",
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 07:00:18",
-    "messages_total": 64137
+    "last_check": "2026-04-07 07:00:20",
+    "messages_total": 64231
   },
   "annie@inperson-group.com": {
     "sales": "Настя",
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 07:00:20",
-    "messages_total": 7384
+    "last_check": "2026-04-07 07:00:22",
+    "messages_total": 7600
   },
   "amelia@inperson-group.com": {
     "sales": "Ксения",
     "type": "workspace",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 07:00:22",
-    "messages_total": 5483
+    "last_check": "2026-04-07 07:00:24",
+    "messages_total": 5734
   },
   "milukovasofia457@gmail.com": {
     "sales": "Джеля",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:29",
+    "last_check": "2026-04-07 07:00:26",
     "messages_total": 9853
   },
   "aalexantoos@gmail.com": {
@@ -68,63 +68,63 @@
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:29",
-    "messages_total": 13751
+    "last_check": "2026-04-07 07:00:28",
+    "messages_total": 13753
   },
   "gachakeril@gmail.com": {
     "sales": "Джеля",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:29",
-    "messages_total": 20595
+    "last_check": "2026-04-07 07:00:29",
+    "messages_total": 20645
   },
   "mijaresenely523@gmail.com": {
     "sales": "Джеля",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:29",
-    "messages_total": 22811
+    "last_check": "2026-04-07 07:00:30",
+    "messages_total": 22883
   },
   "klavarossi@gmail.com": {
     "sales": "Джеля",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:29",
-    "messages_total": 23042
+    "last_check": "2026-04-07 07:00:31",
+    "messages_total": 23162
   },
   "annwalkmanmgmt@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:30",
-    "messages_total": 1550
+    "last_check": "2026-04-07 07:00:31",
+    "messages_total": 1579
   },
   "walkman.annie@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:30",
-    "messages_total": 27250
+    "last_check": "2026-04-07 07:00:32",
+    "messages_total": 27256
   },
   "annie.applin@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:30",
-    "messages_total": 1960
+    "last_check": "2026-04-07 07:00:33",
+    "messages_total": 1961
   },
   "ann.gruv@gmail.com": {
     "sales": "Настя",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:30",
+    "last_check": "2026-04-07 07:00:34",
     "messages_total": 26987
   },
   "tammy.melloww@gmail.com": {
@@ -132,7 +132,7 @@
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:30",
+    "last_check": "2026-04-07 07:00:35",
     "messages_total": 32235
   },
   "oliviamerrickson@gmail.com": {
@@ -140,7 +140,7 @@
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:31",
+    "last_check": "2026-04-07 07:00:35",
     "messages_total": 10
   },
   "roksiblackfansy@gmail.com": {
@@ -148,7 +148,7 @@
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:31",
+    "last_check": "2026-04-07 07:00:36",
     "messages_total": 32235
   },
   "roxanawinterhold@gmail.com": {
@@ -156,31 +156,31 @@
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:31",
-    "messages_total": 6461
+    "last_check": "2026-04-07 07:00:37",
+    "messages_total": 6557
   },
   "roxanabarnum@gmail.com": {
     "sales": "Ксения",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:31",
-    "messages_total": 239
+    "last_check": "2026-04-07 07:00:38",
+    "messages_total": 245
   },
   "blueskyroxana@gmail.com": {
     "sales": "Ксения",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:31",
-    "messages_total": 215
+    "last_check": "2026-04-07 07:00:38",
+    "messages_total": 224
   },
   "woodenwarekristian@gmail.com": {
     "sales": "Ксения",
     "type": "gmail",
     "status": "ok",
     "error": null,
-    "last_check": "2026-04-06 17:24:32",
-    "messages_total": 127
+    "last_check": "2026-04-07 07:00:39",
+    "messages_total": 167
   }
 }
