@@ -8,6 +8,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 import os
+import json
 from datetime import datetime, timezone, timedelta
 
 try:
@@ -19,7 +20,7 @@ try:
 except Exception:
     pass
 
-DATA_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "emails_monthly.csv")
+DATA_FILE = os.path.join(os.path.dirname(__file__), "data", "emails_monthly.csv")
 
 
 def _csv_mtime():
@@ -130,13 +131,13 @@ with st.expander("📋 Данные по месяцам (таблица)"):
     st.dataframe(tbl, hide_index=True, width="stretch")
 
 # --- График: Отправлено/получено по неделям ---
-WEEKLY_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "emails_weekly.csv")
+WEEKLY_FILE = os.path.join(os.path.dirname(__file__), "data", "emails_weekly.csv")
 if os.path.exists(WEEKLY_FILE):
     st.divider()
     st.subheader("📬 Отправлено и получено писем — по неделям")
     st.caption("Суммарно по всем сэйлзам и аккаунтам")
 
-    @st.cache_data
+    @st.cache_data(ttl=3600)
     def load_weekly(mtime):
         wdf = pd.read_csv(WEEKLY_FILE)
         wdf["sent"] = pd.to_numeric(wdf["sent"], errors="coerce").fillna(0).astype(int)
@@ -397,7 +398,7 @@ else:
     st.info("Выбери хотя бы одного сэйлза")
 
 # --- График: Исходящие по дням (30 дней) ---
-DAILY_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "daily_sent_30d.csv")
+DAILY_FILE = os.path.join(os.path.dirname(__file__), "data", "daily_sent_30d.csv")
 if os.path.exists(DAILY_FILE):
     st.divider()
     st.subheader("📅 Исходящие письма за последние 30 дней — по дням")
@@ -485,7 +486,7 @@ if not df_snovio.empty:
         st.dataframe(pivot_snovio, use_container_width=True)
 
 # --- График: Типы исходящих писем по сэйлзам ---
-TYPES_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "outgoing_types_monthly.csv")
+TYPES_FILE = os.path.join(os.path.dirname(__file__), "data", "outgoing_types_monthly.csv")
 if os.path.exists(TYPES_FILE):
     st.divider()
     st.subheader("📊 Типы исходящих писем — по сэйлз-менеджерам")
@@ -572,3 +573,209 @@ if os.path.exists(TYPES_FILE):
             st.dataframe(types_table, hide_index=True, use_container_width=True)
     else:
         st.info("Выбери хотя бы одного сэйлза")
+
+# --- Новый отдельный блок: распределение входящих адресов ---
+WORKSPACE_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+INCOMING_DIST_FILE_1D = os.path.join(WORKSPACE_ROOT, "email_analytics", "data", "incoming_distribution", "summary_1d.json")
+INCOMING_DIST_FILE_7D = os.path.join(WORKSPACE_ROOT, "email_analytics", "data", "incoming_distribution", "summary_7d.json")
+INCOMING_DIST_FILE_2026_MONTHLY = os.path.join(WORKSPACE_ROOT, "email_analytics", "data", "incoming_distribution", "summary_2026_monthly.json")
+
+@st.cache_data(ttl=3600)
+def load_incoming_distribution(path, mtime):
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+if os.path.exists(INCOMING_DIST_FILE_2026_MONTHLY):
+    st.divider()
+    st.subheader("📨 Анализ входящих внешниъ адресов по месяцам (2026)")
+    st.caption("Отдельный экспериментальный блок. Анализируются только 17 не-Snovio аккаунтов.")
+
+    incoming_yearly = load_incoming_distribution(
+        INCOMING_DIST_FILE_2026_MONTHLY,
+        os.path.getmtime(INCOMING_DIST_FILE_2026_MONTHLY),
+    )
+    months_data = incoming_yearly.get("months", [])
+
+    if months_data:
+        months = [m.get("month") for m in months_data]
+        unique_values = [m.get("unique_external_incoming_addresses", 0) for m in months_data]
+        with_reply = [m.get("reply_status", {}).get("with_reply", 0) for m in months_data]
+        without_reply = [m.get("reply_status", {}).get("without_reply", 0) for m in months_data]
+
+        latest = months_data[-1]
+        col_a, col_b, col_c = st.columns(3)
+        with col_a:
+            st.metric("Последний месяц: уникальных адресов", latest.get("unique_external_incoming_addresses", 0))
+        with col_b:
+            st.metric("Последний месяц: с ответом", latest.get("reply_status", {}).get("with_reply", 0))
+        with col_c:
+            st.metric("Последний месяц: без ответа", latest.get("reply_status", {}).get("without_reply", 0))
+
+        fig_unique = go.Figure()
+        fig_unique.add_trace(go.Bar(
+            x=months,
+            y=unique_values,
+            marker_color="#4A90D9",
+            text=unique_values,
+            textposition="outside",
+            name="Уникальные внешние адреса",
+        ))
+        fig_unique.update_layout(
+            height=460,
+            yaxis_title="Количество уникальных адресов",
+            xaxis_title="Месяц",
+            margin=dict(b=60, t=40),
+            showlegend=False,
+        )
+        st.plotly_chart(fig_unique, use_container_width=True)
+
+        fig_dist_monthly = go.Figure()
+        bucket_meta = [
+            ("1", "1 письмо", "#4A90D9"),
+            ("2", "2 письма", "#50C878"),
+            ("3", "3 письма", "#FFB347"),
+            ("4", "4 письма", "#B57EDC"),
+            ("5_plus", "5+ писем", "#FF6B6B"),
+        ]
+        for bucket_key, bucket_label, color in bucket_meta:
+            fig_dist_monthly.add_trace(go.Bar(
+                x=months,
+                y=[m.get("distribution", {}).get(bucket_key, 0) for m in months_data],
+                name=bucket_label,
+                marker_color=color,
+            ))
+        fig_dist_monthly.update_layout(
+            barmode="group",
+            height=520,
+            yaxis_title="Количество уникальных адресов",
+            xaxis_title="Месяц",
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+            margin=dict(b=60, t=60),
+        )
+        st.plotly_chart(fig_dist_monthly, use_container_width=True)
+
+        fig_reply_status = go.Figure()
+        fig_reply_status.add_trace(go.Bar(
+            x=months,
+            y=with_reply,
+            name="С ответом",
+            marker_color="#50C878",
+        ))
+        fig_reply_status.add_trace(go.Bar(
+            x=months,
+            y=without_reply,
+            name="Без ответа",
+            marker_color="#FF6B6B",
+        ))
+        fig_reply_status.update_layout(
+            barmode="group",
+            height=460,
+            yaxis_title="Количество уникальных адресов",
+            xaxis_title="Месяц",
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+            margin=dict(b=60, t=60),
+        )
+        st.plotly_chart(fig_reply_status, use_container_width=True)
+
+        with st.expander("📋 Помесячная таблица новой метрики"):
+            rows = []
+            for m in months_data:
+                rows.append({
+                    "Месяц": m.get("month"),
+                    "Уникальных адресов": m.get("unique_external_incoming_addresses", 0),
+                    "1 письмо": m.get("distribution", {}).get("1", 0),
+                    "2 письма": m.get("distribution", {}).get("2", 0),
+                    "3 письма": m.get("distribution", {}).get("3", 0),
+                    "4 письма": m.get("distribution", {}).get("4", 0),
+                    "5+ писем": m.get("distribution", {}).get("5_plus", 0),
+                    "С ответом": m.get("reply_status", {}).get("with_reply", 0),
+                    "Без ответа": m.get("reply_status", {}).get("without_reply", 0),
+                })
+            st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
+else:
+    incoming_summary_path = None
+    incoming_period_label = None
+    if os.path.exists(INCOMING_DIST_FILE_7D):
+        incoming_summary_path = INCOMING_DIST_FILE_7D
+        incoming_period_label = "7 дней"
+    elif os.path.exists(INCOMING_DIST_FILE_1D):
+        incoming_summary_path = INCOMING_DIST_FILE_1D
+        incoming_period_label = "1 день (тестовый прогон)"
+
+    if incoming_summary_path:
+        st.divider()
+        st.subheader("📨 Новая метрика: входящие внешние адреса за короткий период")
+        st.caption(f"Отдельный экспериментальный блок. Период: {incoming_period_label}. Анализируются только 17 не-Snovio аккаунтов.")
+
+        incoming_summary = load_incoming_distribution(
+            incoming_summary_path,
+            os.path.getmtime(incoming_summary_path),
+        )
+
+        col_a, col_b, col_c = st.columns(3)
+        with col_a:
+            st.metric("Уникальных внешних адресов", incoming_summary.get("unique_external_incoming_addresses", 0))
+        with col_b:
+            st.metric("С ответом", incoming_summary.get("reply_status", {}).get("with_reply", 0))
+        with col_c:
+            st.metric("Без ответа", incoming_summary.get("reply_status", {}).get("without_reply", 0))
+
+        distribution = incoming_summary.get("distribution", {})
+        dist_labels = ["1 письмо", "2 письма", "3 письма", "4 письма", "5+ писем"]
+        dist_values = [
+            distribution.get("1", 0),
+            distribution.get("2", 0),
+            distribution.get("3", 0),
+            distribution.get("4", 0),
+            distribution.get("5_plus", 0),
+        ]
+
+        fig_incoming_dist = go.Figure()
+        fig_incoming_dist.add_trace(go.Bar(
+            x=dist_labels,
+            y=dist_values,
+            marker_color=["#4A90D9", "#50C878", "#FFB347", "#B57EDC", "#FF6B6B"],
+            text=dist_values,
+            textposition="outside",
+            name="Количество адресов",
+        ))
+        fig_incoming_dist.update_layout(
+            height=460,
+            yaxis_title="Количество уникальных адресов",
+            xaxis_title="Сколько входящих писем пришло с адреса",
+            margin=dict(b=60, t=40),
+            showlegend=False,
+        )
+        st.plotly_chart(fig_incoming_dist, use_container_width=True)
+
+        reply_status = incoming_summary.get("reply_status", {})
+        fig_reply_status = go.Figure()
+        fig_reply_status.add_trace(go.Bar(
+            x=["С ответом", "Без ответа"],
+            y=[reply_status.get("with_reply", 0), reply_status.get("without_reply", 0)],
+            marker_color=["#50C878", "#FF6B6B"],
+            text=[reply_status.get("with_reply", 0), reply_status.get("without_reply", 0)],
+            textposition="outside",
+            name="Статус ответа",
+        ))
+        fig_reply_status.update_layout(
+            height=460,
+            yaxis_title="Количество уникальных адресов",
+            xaxis_title="Статус ответа со стороны sales",
+            margin=dict(b=60, t=40),
+            showlegend=False,
+        )
+        st.plotly_chart(fig_reply_status, use_container_width=True)
+
+        with st.expander("📋 Детали новой метрики (таблица)"):
+            detail_rows = []
+            for row in incoming_summary.get("top_external_addresses", []):
+                detail_rows.append({
+                    "Email": row.get("email"),
+                    "Входящих писем": row.get("incoming_messages"),
+                    "Ответ sales": "Да" if row.get("replied") else "Нет",
+                })
+            if detail_rows:
+                st.dataframe(pd.DataFrame(detail_rows), hide_index=True, use_container_width=True)
+            else:
+                st.info("Пока нет данных для таблицы")
