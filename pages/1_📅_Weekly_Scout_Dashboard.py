@@ -160,13 +160,13 @@ with col_s2:
     
     snovio_weeks = sorted(df_snovio["date"].unique())
     if snovio_weeks:
-        default_snovio_weeks = snovio_weeks[-4:] if len(snovio_weeks) >= 4 else snovio_weeks
+        default_snovio_weeks = snovio_weeks
         selected_snovio_weeks = st.multiselect(
             "Недели:",
             options=snovio_weeks,
             default=default_snovio_weeks,
             format_func=lambda d: week_display_map[d],
-            help="Выбери недели для анализа"
+            help="По умолчанию выбраны все доступные недели"
         )
     else:
         selected_snovio_weeks = []
