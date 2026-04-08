@@ -30,8 +30,14 @@ if __name__ == "__main__" or not hasattr(st, "_page_config_set"):
 # Путь к файлу данных (в prod репозитории данные в папке data/)
 SNOVIO_DATA_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "weekly_report.csv")
 
+def _snovio_csv_mtime():
+    if not os.path.exists(SNOVIO_DATA_FILE):
+        return None
+    return os.path.getmtime(SNOVIO_DATA_FILE)
+
+
 @st.cache_data
-def load_snovio_data():
+def load_snovio_data(_mtime):
     """Загружает CSV с данными Weekly Report для Snovio."""
     if not os.path.exists(SNOVIO_DATA_FILE):
         # Если файла нет, пытаемся загрузить данные
@@ -71,7 +77,7 @@ def load_snovio_data():
 
 
 # --- Загрузка данных ---
-df_snovio = load_snovio_data()
+df_snovio = load_snovio_data(_snovio_csv_mtime())
 
 # --- Заголовок ---
 st.title("📅 Weekly Scout Dashboard")
